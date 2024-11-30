@@ -1,0 +1,327 @@
+/* Container de login */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+  padding: 1rem;
+}
+
+/* Estilo do formulário */
+.login-form-wrapper {
+  max-width: 450px;
+  width: 100%;
+}
+
+.login-form {
+  background-color: #fff;
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.slide-out-left {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.slide-in-right {
+  animation: slide-in-right-animation 0.6s ease forwards;
+}
+
+@keyframes slide-in-right-animation {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Logo Trevi no topo do formulário */
+.logo-trevi {
+  width: 80px;
+  margin-bottom: 1.5rem;
+}
+
+/* Título do formulário e subtítulo */
+.login-form h2 {
+  margin-bottom: 0.5rem;
+  color: #202124;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.login-subtitle {
+  color: #5f6368;
+  font-size: 0.875rem;
+  margin-bottom: 2rem;
+}
+
+/* Estilo dos inputs */
+.input-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #202124;
+  font-weight: 500;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  background-color: #f1f3f4;
+  color: #202124;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+  border-color: #1a73e8;
+  outline: none;
+}
+
+/* Grupo da senha e ícone do olho */
+.senha-group {
+  position: relative;
+}
+
+.senha-input-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.senha-input-wrapper input {
+  flex: 1;
+  padding-right: 2.5rem;
+}
+
+.icone-olho {
+  position: absolute;
+  right: 0.8rem;
+  cursor: pointer;
+}
+
+/* Botão de login */
+.login-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #3367d6;
+}
+
+.login-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Spinner centralizado no botão */
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #ffcc00;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  position: absolute;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Botão criar conta (hover dinâmico adaptado ao cursor) */
+.create-account-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: transparent;
+  color: #1a73e8;
+  border: 1px solid #1a73e8;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden; /* Garante que o pseudo-elemento não ultrapasse o botão */
+  transition: color 0.3s ease;
+}
+
+.create-account-button:hover {
+  color: white;
+}
+
+.create-account-button::before {
+  content: '';
+  position: absolute;
+  top: var(--hover-top, 50%);
+  left: var(--hover-left, 50%);
+  width: 0;
+  height: 0;
+  background-color: #1a73e8;
+  z-index: 0;
+  border-radius: 50%; /* Cria o efeito circular */
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease, height 0.5s ease;
+}
+
+.create-account-button:hover::before {
+  width: 300%; /* Expande para cobrir o botão */
+  height: 300%;
+}
+
+/* Texto acima do efeito */
+.create-account-button span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Estilo da imagem de usuário */
+.user-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+  object-fit: cover;
+  border: 2px solid #dadce0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Nome do usuário */
+.user-name {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #202124;
+  margin-bottom: 0.5rem;
+}
+
+/* Link para "Esqueceu sua senha?" */
+.esqueceu-senha {
+  color: #1a73e8;
+  font-size: 0.875rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.esqueceu-senha:hover {
+  text-decoration: underline;
+}
+
+/* Mensagem de erro */
+.mensagem-erro {
+  color: #ea4335;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #4caf50;
+  color: white;
+  padding: 1.5rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  font-size: 1.2rem;
+  z-index: 1000;
+  text-align: center;
+  animation: fade-in-out 1s ease forwards;
+}
+
+@keyframes fade-in-out {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  10%, 90% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -40%);
+  }
+}
+
+/* Animação de balanço para inputs */
+.shake {
+  animation: shake-animation 0.5s ease-in-out;
+}
+
+@keyframes shake-animation {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .login-form {
+    padding: 1.5rem;
+  }
+
+  .login-form h2 {
+    font-size: 1.25rem;
+  }
+
+  .login-button {
+    padding: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-form {
+    padding: 1rem;
+  }
+
+  .login-form h2 {
+    font-size: 1rem;
+  }
+
+  .input-group input {
+    padding: 0.6rem;
+  }
+
+  .login-button {
+    padding: 0.5rem;
+  }
+}

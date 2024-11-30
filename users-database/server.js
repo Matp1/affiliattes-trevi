@@ -1,11 +1,13 @@
 import express from "express";
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client';
+import cors from 'cors'; // Importar CORS
 import bcrypt from 'bcryptjs'; // Para hash de senhas
-import jwt from 'jsonwebtoken'; // Para criar tokens JWT (se for usar autenticação)
+import jwt from 'jsonwebtoken'; // Para criar tokens JWT
 
-const prisma = new PrismaClient()
-
+const prisma = new PrismaClient();
 const app = express();
+
+app.use(cors()); // Ativar CORS
 app.use(express.json());
 
 // Rota de criação de usuário
@@ -22,12 +24,16 @@ app.post('/users', async (req, res) => {
             }
         });
 
-        res.status(201).json(user);
+        // Gera o token JWT para autenticar o usuário automaticamente após o cadastro
+        const token = jwt.sign({ id: user.id, email: user.email }, 'secrettokenkey', { expiresIn: '1h' });
+
+        res.status(201).json({ user, token }); // Retorna o usuário criado junto com o token
     } catch (error) {
         console.error(error);
         res.status(400).json({ error: "Erro ao criar usuário. Verifique os dados enviados." });
     }
 });
+
 // Rota de login de usuário (exemplo básico com JWT)
 app.post('/login', async (req, res) => {
     try {
@@ -105,4 +111,25 @@ app.delete('/users/:id', async (req, res) => {
 // Inicia o servidor
 app.listen(3000, () => {
     console.log('Servidor rodando na porta 3000');
+});
+
+
+// Rota de obter usuário por email
+app.post('/users/email', async (req, res) => {
+    try {
+        const email = req.body.email;
+
+        const user = await prisma.user.findUnique({
+            where: { email: email }
+        });
+
+        if (!user) {
+            return res.status(404).json({ error: "Usuário não encontrado" });
+        }
+
+        res.status(200).json(user);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Erro ao buscar usuário pelo email." });
+    }
 });

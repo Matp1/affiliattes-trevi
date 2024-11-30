@@ -1,0 +1,247 @@
+/* Container de login */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+  padding: 1rem;
+}
+
+/* Estilo do formulário */
+.login-form-wrapper {
+  max-width: 450px;
+  width: 100%;
+}
+
+.login-form {
+  background-color: #fff;
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.login-form h2 {
+  margin-bottom: 0.5rem;
+  color: #202124;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.login-subtitle {
+  color: #5f6368;
+  font-size: 0.875rem;
+  margin-bottom: 2rem;
+}
+
+/* Inputs */
+.input-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #202124;
+  font-weight: 500;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  background-color: #f1f3f4;
+  color: #202124;
+}
+
+.input-group input:focus {
+  border-color: #1a73e8;
+  outline: none;
+}
+
+/* Mensagem de erro */
+.mensagem-erro {
+  color: #ea4335;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+/* Grupo da senha e ícone do olho */
+.senha-group {
+  position: relative;
+}
+
+.senha-input-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.senha-input-wrapper input {
+  flex: 1;
+  padding-right: 2.5rem;
+}
+
+.icone-olho {
+  position: absolute;
+  right: 0.8rem;
+  cursor: pointer;
+}
+
+/* Requisitos de senha */
+.senha-requisitos {
+  margin-top: 0.5rem;
+}
+
+.senha-requisitos p {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.senha-requisitos p.valid {
+  color: green;
+}
+
+.senha-requisitos p.invalid {
+  color: red;
+}
+
+/* Botão de cadastro */
+.login-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #1a73e8;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex; /* Para centralizar conteúdo */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  position: relative;
+}
+
+.login-button:hover {
+  background-color: #3367d6;
+}
+
+.login-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Spinner centralizado no botão */
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #ffcc00;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  position: absolute; /* Fica no centro absoluto do botão */
+}
+
+/* Animação do spinner */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Logo Trevi no topo do formulário */
+.logo-trevi {
+  width: 80px;
+  margin-bottom: 1.5rem;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #4caf50;
+  color: white;
+  padding: 1.5rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  font-size: 1.2rem;
+  z-index: 1000;
+  text-align: center;
+  animation: fade-in-out 1s ease forwards;
+}
+
+/* Animação do toast */
+@keyframes fade-in-out {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  10%, 90% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -40%);
+  }
+}
+
+/* Animação de balanço para inputs */
+.shake {
+  animation: shake-animation 0.5s ease-in-out;
+}
+
+@keyframes shake-animation {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .login-form {
+    padding: 1.5rem;
+  }
+
+  .login-form h2 {
+    font-size: 1.25rem;
+  }
+
+  .login-button {
+    padding: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-form {
+    padding: 1rem;
+  }
+
+  .login-form h2 {
+    font-size: 1rem;
+  }
+
+  .input-group input {
+    padding: 0.6rem;
+  }
+
+  .login-button {
+    padding: 0.5rem;
+  }
+}
