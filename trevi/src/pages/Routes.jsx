@@ -1,8 +1,9 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import CadastroUsuario from './cadastro/index';
-import LoginUsuario from './login/index';
-import PaginaPrincipal from './home/index';
-import PrivateRoute from './PrivateRoute';
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import CadastroUsuario from "./cadastro/index";
+import LoginUsuario from "./login/index";
+import PaginaPrincipal from "./home/index";
+import CadastroProduto from "./productsRegister/index";
+import PrivateRoute from "./PrivateRoute";
 
 const AppRoutes = () => {
   return (
@@ -16,6 +17,14 @@ const AppRoutes = () => {
           element={
             <PrivateRoute>
               <PaginaPrincipal />
+            </PrivateRoute>
+          } 
+        />
+        <Route 
+          path="/produtos/cadastro" 
+          element={
+            <PrivateRoute>
+              <CadastroProduto />
             </PrivateRoute>
           } 
         />
