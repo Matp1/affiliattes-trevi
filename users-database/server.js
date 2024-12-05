@@ -2,8 +2,10 @@ import express from "express";
 import { PrismaClient } from '@prisma/client';
 import cors from 'cors'; // Importar CORS
 import bcrypt from 'bcryptjs'; // Para hash de senhas
-import jwt from 'jsonwebtoken'; // Para criar tokens JWT
+import dotenv from 'dotenv';
 
+dotenv.config();
+import jwt from 'jsonwebtoken'; // Para criar tokens JWT
 const prisma = new PrismaClient();
 const app = express();
 
@@ -23,11 +25,16 @@ app.post('/users', async (req, res) => {
                 password: hashedPassword,
             }
         });
-
         // Gera o token JWT para autenticar o usuário automaticamente após o cadastro
-        const token = jwt.sign({ id: user.id, email: user.email }, 'secrettokenkey', { expiresIn: '1h' });
-
-        res.status(201).json({ user, token }); // Retorna o usuário criado junto com o token
+        const token = jwt.sign(
+            { id: user.id, email: user.email }, 
+            process.env.TOKEN_SECRET, 
+            { expiresIn: '1h' }
+        );
+        console.log('TOKEN_SECRET na geração do JWT:', process.env.TOKEN_SECRET);
+          
+          // Enviar o token na resposta
+          res.json({ user, token });
     } catch (error) {
         console.error(error);
         res.status(400).json({ error: "Erro ao criar usuário. Verifique os dados enviados." });
@@ -35,7 +42,7 @@ app.post('/users', async (req, res) => {
 });
 
 // Rota de login de usuário (exemplo básico com JWT)
-app.post('/login', async (req, res) => {
+/*app.post('/login', async (req, res) => {
     try {
         const user = await prisma.user.findUnique({
             where: { email: req.body.email }
@@ -51,15 +58,67 @@ app.post('/login', async (req, res) => {
             return res.status(400).json({ error: "Senha incorreta!" });
         }
 
+        const user = { id: "dummyUserId", email };  // Apenas para simulação
+
+        console.log('TOKEN_SECRET na geração do JWT:', process.env.TOKEN_SECRET);
+        if (!process.env.TOKEN_SECRET) {
+          return res.status(500).json({ error: 'TOKEN_SECRET não está definido no ambiente do servidor.' });
+        }
+
         // Gera o token JWT
-        const token = jwt.sign({ id: user.id, email: user.email }, 'secrettokenkey', { expiresIn: '1h' });
+        const token = jwt.sign(
+            { id: user.id, email: user.email },
+            process.env.TOKEN_SECRET,
+            { expiresIn: '1h', algorithm: 'HS256' }  // Garantir que o algoritmo está sendo especificado
+          );
 
         res.status(200).json({ token });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Erro ao realizar login." });
     }
+});*/
+
+app.post('/login', async (req, res) => {
+    try {
+        // Buscar usuário pelo e-mail fornecido
+        const user = await prisma.user.findUnique({
+            where: { email: req.body.email }
+        });
+
+        if (!user) {
+            return res.status(400).json({ error: "Usuário não encontrado!" });
+        }
+
+        // Verificar se a senha fornecida é válida
+        const isPasswordValid = await bcrypt.compare(req.body.password, user.password);
+        
+        if (!isPasswordValid) {
+            return res.status(400).json({ error: "Senha incorreta!" });
+        }
+
+        // Exibir o TOKEN_SECRET para depuração
+        console.log('TOKEN_SECRET na geração do JWT:', process.env.TOKEN_SECRET);
+
+        if (!process.env.TOKEN_SECRET) {
+            return res.status(500).json({ error: 'TOKEN_SECRET não está definido no ambiente do servidor.' });
+        }
+
+        // Gera o token JWT usando o usuário encontrado
+        const token = jwt.sign(
+            { id: user.id, email: user.email },
+            process.env.TOKEN_SECRET,
+            { expiresIn: '1h', algorithm: 'HS256' }  // Garantir que o algoritmo está sendo especificado
+        );
+
+        // Responder com o token gerado
+        res.status(200).json({ token });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Erro ao realizar login." });
+    }
 });
+
 
 // Rota de obter todos os usuários (somente para administração)
 app.get('/users', async (req, res) => {
