@@ -1,7 +1,7 @@
 import React from "react";
 import logo from '../../assets/images/Imagem1_140x@2x.png'; // Importação da logo
 import secureBuy from '../../assets/images/Design_sem_nome__6_-removebg-preview.png'; // Importação da logo
-import "./Footer.css";
+import "./footer.css";
 
 
 const Footer = () => {
