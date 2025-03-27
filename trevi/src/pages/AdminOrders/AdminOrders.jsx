@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "../CartPage/CartPage.css"; // Reaproveitando estilos do carrinho
+import "../cartPage/CartPage.css"; // Reaproveitando estilos do carrinho
 
 const AdminOrders = () => {
   const [orders, setOrders] = useState([]);
