@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Orders.css";
+import "./orders.css";
 import Header from "../header/header.jsx";
 import Footer from "../footer/footer.jsx";
 import { toast } from "react-toastify";
