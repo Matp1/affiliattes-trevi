@@ -1,0 +1,125 @@
+.category-container {
+    width: 90%;
+    margin-top: 80px;
+    margin-left: 70px;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .category-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-family: "Century Gothic", "Arial";
+  }
+  
+  .category-description {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  .category-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+  }
+  
+  .control-group {
+    display: flex;
+    align-items: center;
+  }
+  
+  .control-group label {
+    margin-right: 8px;
+    font-weight: bold;
+  }
+  
+  .control-group select {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .control-group button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    margin-left: 5px;
+  }
+  
+  .control-group button.active {
+    color: #be8800;
+  }
+  
+  .product-list.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .product-list.list {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    padding: 15px; /* 🔹 Reduz o padding para economizar espaço */
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: auto; /* 🔹 Define a altura automaticamente */
+    min-height: 300px; /* 🔹 Reduz a altura mínima */
+    max-width: 220px; /* 🔹 Reduz a largura do card */
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.product-card img {
+    width: 100%;
+    max-width: 200px; /* 🔹 Reduz o tamanho da imagem */
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 8px;
+}
+
+.product-card h3 {
+    font-size: 16px; /* 🔹 Reduz o tamanho do título */
+    font-weight: bold;
+    margin: 8px 0;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 40px; /* 🔹 Reduz a altura do título */
+    max-width: 90%;
+    word-wrap: break-word;
+}
+
+.price {
+    font-size: 18px; /* 🔹 Reduz o tamanho do preço */
+    font-weight: bold;
+    color: green;
+    margin: 4px 0;
+    text-align: left;
+}
+
+.installments {
+    font-size: 12px; /* 🔹 Reduz o tamanho do texto de parcelas */
+    color: gray;
+    margin-bottom: 8px;
+    text-align: left;
+    margin-left: 0;
+}

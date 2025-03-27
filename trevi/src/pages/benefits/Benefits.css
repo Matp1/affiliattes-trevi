@@ -1,0 +1,52 @@
+.benefits {
+    padding: 40px 20px; /* Espaçamento interno */
+    background-color: #ffff; /* Cor de fundo */
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .benefits-container {
+    display: flex;
+    justify-content: space-between; /* Alinhamento com espaço igual entre os itens */
+    align-items: center;
+    flex-wrap: wrap; /* Responsivo */
+    gap: 20px;
+  }
+  
+  .benefit-item {
+    display: flex;
+    align-items: center; /* Alinha ícone e texto lado a lado */
+    gap: 12px; /* Espaço entre ícone e texto */
+    text-align: left; /* Texto alinhado à esquerda */
+    max-width: 300px; /* Limite de largura */
+  }
+  
+  .benefit-icon {
+    font-size: 26px; /* Reduz tamanho do ícone */
+    color: #be8800; /* Cor dourada */
+  }
+  
+  .benefit-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .benefit-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #be8800;
+    margin-bottom: 4px;
+    text-align: center;
+  }
+  
+  .benefit-description {
+    font-size: 12px;
+    color: #666; /* Cor mais suave para texto */
+    line-height: 1.5;
+  }
+  
+  /* Espaço abaixo para separar do footer */
+  .footer-spacing {
+    margin-bottom: 0px; /* Remove qualquer espaço extra */
+  }
+  

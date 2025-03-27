@@ -1,0 +1,680 @@
+/* Estilização Geral */
+body {
+  font-family: 'Avenir Next', sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 600;
+}
+
+header {
+  max-width: 100%;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+footer {
+  max-width: 100%;
+  width: 100%;
+}
+
+.benefits {
+  max-width: 100%;
+  width: 100%;
+}
+
+.product-page {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0;
+}
+
+/* Contêiner Principal */
+.content {
+  display: flex;
+  flex-wrap: nowrap;
+  /* Impede que os itens quebrem para baixo */
+  gap: 20px;
+  /* Espaço entre os elementos */
+  align-items: flex-start;
+  /* Alinha os itens ao topo */
+  max-width: 1200px;
+  margin: 0 auto;
+  /* Centraliza na tela */
+  padding: 0;
+  /* Remove paddings */
+}
+
+/* Galeria de Imagens */
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* Espaço entre miniaturas */
+  align-items: center;
+}
+
+.image-container {
+  display: flex;
+  align-items: flex-start;
+  padding: 25px;
+  border: 0.5px solid #e0e0e0;
+  border-radius: 24px;
+  /* Bordas arredondadas */
+  outline: none;
+  /* Remove contorno de foco (se houver) */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Sombra suave */
+  background-color: #fff;
+  /* Fundo branco para destacar */
+}
+
+.main-image img {
+  width: 592px;
+  height: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Mantém sombra na imagem principal */
+}
+
+.thumbnail-list {
+  margin-right: 50px;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.thumbnail {
+  width: 60px;
+  /* Tamanho das miniaturas */
+  height: 60px;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.thumbnail.selected {
+  border-color: #f0c040;
+  /* Destaque sutil para a selecionada */
+  transform: scale(1.1);
+  /* Zoom leve ao selecionar */
+}
+
+/* Detalhes do Produto */
+.details {
+  transition: top 0.2s ease-in-out;
+  position: sticky; /* Fixa a posição ao rolar */
+  top: 10px;
+  padding: 20px;
+  align-self: flex-start; /* Alinha ao topo do contêiner flex */
+  background-color: #fff;
+  border: 0.5px solid #e0e0e0;
+  border-radius: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10; /* Mantém a seção acima de outros elementos */
+  max-width: 100%;
+}
+
+.details-sticky {
+  position: sticky;
+  top: 10px;
+  z-index: 10;
+}
+
+/* Quando a seção para no final da descrição */
+.details-fixed {
+  position: absolute;
+  top: auto;
+  bottom: 20px; /* Ajuste conforme necessário */
+}
+
+/* Campos e Botões */
+.details input[type="number"] {
+  width: 60px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.sold-info {
+  margin-bottom: 7px;
+  font-size: 14px;
+  color: #B7B7B7;
+}
+
+.details h1 {
+  font-family: 'Century Gothic', sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.product-line {
+  margin-top: 12px;
+  /* Espaço entre o texto e a linha */
+  margin-bottom: 12px;
+  /* Espaço entre o texto e a linha */
+  border-top: 1px solid #ddd;
+  /* Linha cinza clara */
+  width: 100%;
+  /* Largura completa */
+}
+
+
+.price-section {
+  display: flex;
+  flex-direction: column;
+  /* Alinha os elementos na vertical */
+  align-items: flex-start;
+  /* Alinha pelo lado esquerdo */
+  gap: 5px;
+  /* Adiciona espaço entre os textos */
+  margin-bottom: 10px;
+  line-height: 1.2;
+  /* Ajusta o espaçamento vertical */
+}
+
+.price-label {
+  font-size: 16px;
+  color: #737b97;
+  display: inline-block;
+  padding-right: 18px;
+}
+
+
+.price-value {
+  font-size: 28px;
+  font-weight: 600;
+  color: #28a745;
+  display: inline-block;
+  margin-top: 25px;
+  margin-right: 0.3em;
+
+}
+
+.installments {
+  font-size: 16px;
+  color: #737b97;
+  font-size: 16px;
+  margin-bottom: 16px;
+  margin-top: 2px;
+  margin-left: 65px;
+}
+
+.product-info {
+  font-size: 13px;
+}
+
+.product-code {
+  color: #B7B7B7;
+}
+
+.product-stock {
+  color: #0086FF;
+}
+
+.variants h3 {
+  font-size: 15px;
+  font-weight: normal;
+  color: #737b97;
+  margin-bottom: 10px;
+  /* Espaçamento abaixo de cada título */
+}
+
+.variants h3:first-of-type {
+  margin-bottom: 10px;
+  /* Espaço entre o título "Cor:" e a variante selecionada */
+}
+
+.variants h3:last-of-type {
+  margin-top: 20px;
+  /* Espaço acima do título "Tamanho:" */
+}
+
+.variant-options {
+  display: flex;
+  gap: 8px;
+  /* Adiciona espaçamento uniforme entre os botões */
+  height: 30px;
+  flex-wrap: wrap;
+  /* Permite que as variantes se ajustem em telas menores */
+  background-color: #ffffff;
+}
+
+/* Botões de Seleção */
+.variant-button {
+  padding: 1px 14px 1px 16px;
+  border: 1px solid #ccc;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  text-align: center;
+  vertical-align: middle;
+  color: #737b97;
+  background-color: #fff;
+}
+
+.variant-button.selected {
+  display: flex;
+  width: 100px;
+  /* Largura fixa */
+  height: 40px;
+  /* Altura fixa */
+  /* Amarelo discreto */
+  border-color: #f0c040;
+  color: #BE8800;
+  font-size: 14px;
+  text-align: center;
+}
+
+.buy-button {
+  width: 100%;
+  /* Faz o botão ocupar toda a largura do contêiner pai */
+  background-color: #009640;
+  color: #ffffff;
+  /* Cor branca para o texto */
+  padding: 15px 30px;
+  /* Espaçamento interno */
+  font-size: 18px;
+  /* Tamanho da fonte */
+  font-weight: bold;
+  /* Texto mais destacado */
+  border-radius: 10px;
+  /* Bordas arredondadas */
+  border: none;
+  /* Remove a borda */
+  cursor: pointer;
+  /* Cursor de mão ao passar o mouse */
+  text-align: center;
+  /* Centraliza o texto */
+  transition: 0.3s ease;
+  /* Animação suave ao passar o mouse */
+  margin-top: 15px;
+}
+
+.buy-button:hover {
+  background-color: #00d864;
+}
+
+.quantity-container {
+  position: relative;
+  display: inline-block;
+  margin-left: 1em;
+  width: 80px;
+}
+
+.quantity-selector {
+  width: 80px;
+  padding: 8px 30px 8px 10px;
+  /* Adiciona espaço para a seta */
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  font-size: 14px;
+  appearance: none;
+  /* Remove o estilo padrão do navegador */
+  cursor: pointer;
+}
+
+.quantity-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  /* Ajusta a posição horizontal da seta */
+  transform: translateY(-50%);
+  color: #737b97;
+  /* Cor da seta */
+  pointer-events: none;
+  /* Torna a seta não clicável */
+}
+
+.quantity-container:hover .quantity-selector {
+  border-color: #BE8800;
+}
+
+.quantity-container:hover .quantity-icon {
+  color: #BE8800;
+  /* Altera a cor da seta no hover */
+}
+
+.description-container {
+  flex: 1; /* Largura proporcional */
+  max-width: 45%; /* Ajuste para largura máxima */
+  margin-top: 0 !important; /* Remove margens superiores */
+  margin-left: 160px; /* Ajuste para alinhamento lateral */
+  padding: 0; /* Remova padding adicional */
+  align-self: flex-start; /* Alinhe ao topo */
+  position: relative; /* Permite ajustar mais facilmente */
+  top: -190px; /* Força a subida para compensar espaços desnecessários */
+}
+
+
+.description {
+  margin: 0 !important;
+  /* Remove margens externas */
+  padding: 10px;
+  /* Reduz padding interno */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Mantém a sombra */
+  border-radius: 24px;
+  /* Bordas arredondadas */
+  border: 1px solid #ddd;
+  /* Borda suave */
+}
+
+
+.description h2 {
+  font-family: 'Century Gothic', sans-serif;
+  font-size: 21px;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 20px; /* Adiciona espaçamento abaixo do título */
+  font-weight: 500;
+}
+
+/* Estilo para o texto da descrição */
+.description div {
+  font-family: 'Avenir Next', sans-serif;
+  font-size: 15px;
+  color: #737B97;
+  line-height: 1.8; /* Aumenta o espaçamento entre linhas */
+  text-align: justify;
+  margin-bottom: 20px; /* Espaçamento entre seções */
+  font-weight: normal;
+}
+
+.description p {
+  font-family: 'Avenir Next', sans-serif;
+  font-size: 15px;
+  color: #737B97;
+  line-height: 1.8; /* Aumenta o espaçamento entre linhas */
+  text-align: justify;
+  margin-bottom: 20px; /* Espaçamento entre seções */
+  font-weight: normal;
+}
+
+/* Remove os círculos das listas */
+.description ul {
+  list-style: none; /* Remove os marcadores */
+  padding-left: 0; /* Remove o recuo padrão das listas */
+}
+
+.description li {
+  margin-bottom: 10px; /* Espaçamento entre os itens */
+}
+
+
+.description-specs li {
+  font-size: 14px;
+  /* Tamanho da fonte */
+  color: #333;
+  /* Cor do texto */
+  margin-bottom: 8px;
+  /* Espaçamento entre itens */
+  line-height: 1.6;
+  /* Espaçamento entre linhas */
+}
+
+.description-text {
+  font-size: 14px;
+  /* Tamanho do texto */
+  line-height: 1.6;
+  /* Espaçamento entre linhas */
+  color: #333;
+  /* Cor do texto */
+  text-align: justify;
+  /* Justificar o texto */
+}
+
+/* Breadcrumb */
+.breadcrumb a {
+  font-size: 12px;
+  color: #007bff;
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb span {
+  color: #6c757d;
+  font-size: 12px;
+}
+
+.carousel-container {
+  position: sticky; /* O carrossel ficará fixo durante a rolagem */
+  top: 0; /* Fica no topo da viewport */
+  width: 100%;
+  max-width: 600px; /* Largura máxima */
+  z-index: 10;
+  margin-bottom: 20px; /* Espaço abaixo do carrossel */
+}
+
+.product-carousel {
+  width: 100%;
+  height: auto;
+}
+
+.carousel-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover; /* Ajusta a imagem dentro do espaço */
+}
+
+.delivery-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.delivery-logo {
+  max-width: 100%;
+  /* Tamanho ajustado da logo */
+  height: auto;
+  margin-right: 10px;
+}
+
+.delivery-info {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  /* Evita a quebra de linhas */
+  white-space: nowrap;
+  /* Garante que o texto não será quebrado */
+}
+
+.delivery-info p:first-child {
+  font-size: 14px;
+  /* Tamanho do texto principal */
+  font-weight: bold;
+  /* Deixa o texto mais evidente */
+  color: #737b97;
+  /* Cor ajustada */
+}
+
+.delivery-info .delivery-status {
+  font-size: 12px;
+  /* Tamanho reduzido para o subtítulo */
+  font-weight: normal;
+  /* Subtítulo mais leve */
+  color: #28a745;
+  /* Cor verde */
+}
+
+
+.delivery-info p {
+  margin: 0;
+  font-size: 12px;
+  color: #737b97;
+}
+
+.delivery-status {
+  font-size: 12px;
+  color: #28a745;
+  /* Cor verde para destacar o status */
+  padding-left: 20px;
+}
+
+.delivery-free {
+  font-size: 11px;
+  font-weight: normal;
+  color: #28a745;
+  white-space: nowrap;
+  /* Evita a quebra de linha */
+  margin-left: 50px;
+  /* Espaçamento entre as colunas */
+  margin-bottom: 15px;
+}
+
+.additional-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.info-item i {
+  font-size: 20px;
+  color: #737b97;
+}
+
+.info-item p {
+  font-size: 13px;
+  color: #737b97;
+  margin: 0;
+  white-space: nowrap;
+  /* Garante que o texto flua na mesma linha */
+  line-height: 1.5;
+  /* Ajusta o espaçamento entre linhas (se necessário) */
+}
+
+.info-item p strong {
+  color: #007bff;
+  font-weight: 300;
+  white-space: nowrap;
+  /* Garante que o texto flua na mesma linha */
+  line-height: 1.5;
+  /* Ajusta o espaçamento entre linhas (se necessário) */
+}
+
+.payment-section {
+  text-align: center;
+  margin-top: 5px;
+  /* Espaço entre o botão de comprar e a seção */
+  padding: 20px;
+  align-items: center;
+}
+
+.payment-title {
+  font-size: 14px;
+  font-weight: 50;
+  color: #009640;
+  margin-bottom: 15px;
+}
+
+.payment-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  /* Ajusta em telas menores */
+}
+
+.payment-icons img {
+  width: 38px;
+  /* Tamanho uniforme para todos os ícones */
+  height: 24px;
+  margin: 0.5px;
+  transition: transform 0.3s ease;
+}
+
+.image-container, .details {
+  margin-bottom: 0 !important; /* Remove margem inferior */
+}
+
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .gallery {
+    width: 100%;
+  }
+
+  .details {
+    width: 100%;
+  }
+
+  .buy-button {
+    font-size: 16px;
+  }
+
+  .description-container {
+    margin-top: 30px;
+    padding: 20px;
+    margin-left: 0;
+    /* Remove a margem lateral em telas menores */
+    max-width: 100%;
+    /* Use a largura total */
+  }
+}
+
+@font-face {
+  font-family: 'Avenir Next';
+  src: url('/fonts/avenir-next/AvenirNextLTPro-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir Next';
+  src: url('/fonts/avenir-next/AvenirNextLTPro-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir Next';
+  src: url('/fonts/avenir-next/AvenirNextLTPro-It.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Century Gothic';
+  src: url('/fonts/century-gothic/Century-Gothic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media (max-width: 768px) {
+  .details {
+    position: relative;
+    top: auto;
+    width: 100%; /* Largura total em telas menores */
+    margin-bottom: 20px;
+  }
+}

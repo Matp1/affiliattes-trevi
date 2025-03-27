@@ -1,0 +1,76 @@
+/* Remove margens e padding do body e html */
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden; /* Garante que não haja rolagem horizontal no body */
+  
+}
+
+/* Evita que elementos filhos ultrapassem os limites */
+.page-container {
+  max-width: 100vw; /* Limita ao tamanho da tela */
+  overflow-x: hidden; /* Garante que nenhum conteúdo extravase horizontalmente */
+}
+
+/* Proteção extra para grids ou seções */
+.product-grid,
+.slideshow-section,
+.mosaic-section,
+.featured-section {
+  width: 100%; /* Limita sempre ao tamanho máximo */
+  max-width: 100vw;
+  overflow-x: hidden; /* Remove qualquer possibilidade de barra horizontal */
+}
+
+/* Garante que imagens nunca ultrapassem os limites */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block; /* Evita espaço extra abaixo das imagens */
+}
+
+/* Tratamento para padding negativo ou margens */
+* {
+  box-sizing: border-box;
+}
+
+
+.slideshow-section {
+  width: 100%; /* Garante que o slideshow ocupe 100% da largura disponível */
+  overflow: hidden; /* Remove scroll lateral */
+}
+
+.mosaic-section {
+  width: 100%; /* Ajusta a largura do mosaic */
+  overflow: hidden; /* Evita barra horizontal */
+  justify-items: center;
+}
+
+.featured-section-container {
+  justify-items: center;
+}
+
+.featured-section {
+  width: 100%; /* Ajusta largura dos produtos */
+  overflow: hidden; /* Evita barra horizontal */
+}
+
+.benefits {
+  width: 100%; /* Ajusta largura da seção de benefícios */
+  overflow: hidden; /* Evita barra horizontal */
+}
+
+/* Ajustes adicionais para imagens e grid */
+img {
+  max-width: 100%;
+  height: auto; /* Mantém a proporção */
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsivo */
+  gap: 20px;
+  width: 100%;
+}
+

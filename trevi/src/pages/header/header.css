@@ -1,0 +1,98 @@
+/* Top Bar */
+.announcement-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0px;
+  background: linear-gradient(100deg, #ffcd4b, #be8800);
+  color: white;
+  font-family: "Avenir Next", sans-serif;
+  font-size: 14px;
+  padding: 7px;
+  height: 37px;
+}
+
+.top-bar-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Header Main */
+.header-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  font-family: "Avenir Next", sans-serif;
+  height: 158px;
+}
+
+.logo img {
+  width: 200px;
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  font-family: "Avenir Next", sans-serif;
+}
+
+.search-bar input,
+.search-bar select,
+.search-bar button {
+  padding: 10px;
+  border: none;
+  outline: none;
+}
+
+.search-bar input {
+  flex: 1;
+}
+
+.search-bar select {
+  border-left: 1px solid #ccc;
+}
+
+.search-bar button {
+  background-color: #fff;
+  cursor: pointer;
+}
+
+/* Header Icons */
+.header-icons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  font-family: "Avenir Next", sans-serif;
+}
+
+.icon-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  color: #737b97;
+}
+
+.cart-count {
+  background-color: #be8800;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+/* Navigation Menu */
+.nav-menu ul {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px 0;
+  font-family: "Avenir Next", sans-serif;
+  font-size: 14px;
+  color: #737b97;
+}

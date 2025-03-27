@@ -1,0 +1,117 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Garantindo que o body e o html não tenham margens */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.footer {
+  margin: 0; /* Remove qualquer margem */
+  padding: 20px 0; /* Padding interno para espaçamento */
+  width: 100%; /* Garante que o Footer ocupa toda a largura */
+  background-color: #000; /* Fundo preto */
+  color: #fff; /* Texto branco */
+  position: relative; /* Garante que ele não seja posicionado fora do fluxo normal */
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+.footer-section {
+  flex: 1;
+  margin: 10px;
+}
+
+.footer-section h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.footer-section p, .footer-section strong {
+  color: #fff;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 5px;
+}
+
+.footer-section ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+  color: #c29e55;
+}
+
+.footer-section .newsletter-input {
+  padding: 10px;
+  width: calc(100% - 20px);
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.footer-section .newsletter-button {
+  padding: 10px 20px;
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.footer-section .newsletter-button:hover {
+  background-color: #c29e55;
+  color: #000;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 12px;
+  margin-top: 20px;
+  color: #fff;
+}
+
+.footer-bottom p, .footer-bottom strong {
+  color: #fff;
+}
+
+.security-seals {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.security-seals img {
+  height: 30px;
+}
+
+/* Alinhando o texto abaixo da logo */
+.footer-logo-container {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.footer-info {
+  text-align: center;
+}

@@ -1,0 +1,19 @@
+.announcement-bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(to right, #ffcd4b, #be8800);
+    color: white;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+.announcement-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.icon {
+    font-size: 16px;
+}

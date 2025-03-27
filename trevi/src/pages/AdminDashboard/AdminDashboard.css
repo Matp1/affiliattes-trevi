@@ -1,0 +1,38 @@
+.admin-dashboard {
+    text-align: center;
+    padding: 40px;
+  }
+
+  h1 {
+    font-family: "Century Gothic", "Arial";
+    margin-bottom: 60px;
+  }
+  
+  .admin-menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Cria 2 colunas */
+    gap: 20px; /* Espaçamento entre os botões */
+    justify-content: center; /* Centraliza a grade */
+    max-width: 400px; /* Define uma largura máxima */
+    margin: 20px auto; /* Centraliza a grade na tela */
+  }
+  
+  .admin-menu button {
+    padding: 20px 30px; /* Aumenta o tamanho do botão */
+    font-size: 18px; /* Texto maior */
+    height: 80px; /* Altura fixa */
+    width: 100%; /* Ocupar toda a largura da célula */
+    cursor: pointer;
+    border: 2px solid #BE8800; /* Borda dourada */
+    background-color: transparent; /* Fundo transparente */
+    color: #BE8800; /* Texto dourado */
+    border-radius: 8px; /* Bordas arredondadas */
+    font-weight: bold; /* Texto em negrito */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Suaviza a transição */
+  }
+  
+  .admin-menu button:hover {
+    background-color: #BE8800; /* Fundo dourado ao passar o mouse */
+    color: white; /* Texto branco ao passar o mouse */
+  }
+      

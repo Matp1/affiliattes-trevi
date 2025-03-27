@@ -1,0 +1,281 @@
+.products-register {
+  width: 90%;
+  max-width: 600px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.products-register h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input,
+textarea,
+select {
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+textarea {
+  resize: none;
+  height: 80px;
+}
+
+.variant-inputs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.variant-inputs select,
+.variant-inputs input {
+  flex: 1;
+}
+
+.variant-inputs button {
+  padding: 5px 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  border-radius: 4px;
+}
+
+.variant-inputs button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.variants-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+.variants-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #eee;
+}
+
+.variants-list button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+input[type="file"] {
+  border: none;
+  padding: 5px 0;
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:disabled {
+  background-color: #ccc;
+}
+
+p {
+  text-align: center;
+  color: #d9534f;
+  margin-top: 10px;
+}
+.add-variant-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.add-variant-button:hover {
+  background-color: #45a049;
+}
+
+.remove-variant-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.remove-variant-button:hover {
+  background-color: #e53935;
+}
+
+/* Estilo para o preview de imagens */
+/* Contêiner do preview das imagens */
+.image-preview {
+  display: grid; /* Muda para grid layout para lidar melhor com movimentações 2D */
+  grid-template-columns: repeat(auto-fill, 80px); /* Tamanho dos itens */
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: start;
+}
+
+/* Estilo dos itens (imagens) com transições */
+.sortable-item {
+  position: relative;
+  width: 80px; /* Largura dos itens */
+  height: 80px; /* Altura dos itens */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease; /* Suaviza o movimento */
+}
+
+.sortable-item:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Imagem dentro do item */
+.sortable-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Botão de remoção */
+.remove-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgba(255, 255, 255, 0.8); /* Fundo translúcido */
+  color: #ff4d4f; /* Cor do ícone */
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.remove-button:hover {
+  background-color: rgba(255, 77, 79, 0.9); /* Realce ao passar o mouse */
+  transform: scale(1.1); /* Pequeno zoom no botão */
+}
+
+.upload-area {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 200px;
+  margin: 20px auto;
+  border: 2px dashed #007bff;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.upload-area:hover {
+  background-color: #e9f5ff;
+  border-color: #0056b3;
+}
+
+.upload-area p {
+  font-size: 1rem;
+  color: #666;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.upload-area .upload-icon {
+  font-size: 3rem;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.upload-area input {
+  display: none;
+}
+
+.upload-area.drag-over {
+  background-color: #d0ebff;
+  border-color: #0056b3;
+}
+
+.progress-bar {
+  width: 100%;
+  background: #e0e0e0;
+  border-radius: 4px;
+  height: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.product-card a {
+  text-decoration: none !important; /* Remove sublinhado */
+  color: inherit !important; /* Mantém a cor do texto original */
+}
+
+
+.progress {
+  background: #4caf50;
+  height: 100%;
+  color: white;
+  text-align: center;
+  line-height: 20px;
+  transition: width 0.2s ease-in-out;
+}
+

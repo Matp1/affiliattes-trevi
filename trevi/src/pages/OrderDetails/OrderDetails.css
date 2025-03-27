@@ -1,0 +1,193 @@
+.order-details-page {
+    padding-top: 350px;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .order-details-title {
+    font-size: 22px;
+    font-family: 'Century Gothic', sans-serif;
+    line-height: 1.43;
+    margin-bottom: 50px;
+  }
+  
+  .order-summary {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .order-summary h3 {
+    margin-bottom: 10px;
+  }
+  
+  .order-items-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .order-item {
+    display: flex;
+    align-items: center;
+    background: #f9f9f9;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .order-item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 16px;
+  }
+  
+  .order-item-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .order-status {
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+    text-transform: capitalize;
+  }
+  
+  .order-status.aprovado {
+    background-color: #a4d4ae; /* Verde pastel */
+    color: #155724;
+  }
+  
+  .order-status.pendente {
+    background-color: #f8e8a2; /* Amarelo pastel */
+    color: #856404;
+  }
+  
+  .order-status.negado {
+    background-color: #f5b7b1; /* Vermelho pastel */
+    color: #721c24;
+  }
+  
+  .loading-text, .error-text {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+  }
+
+  .commission-details-container{
+    margin-left: 20px;
+  }
+  
+  .order-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+  }
+  
+  .save-changes-button {
+    background-color: gray;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: not-allowed;
+  }
+  
+  .save-changes-button.enabled {
+    background-color: #28a745;
+    cursor: pointer;
+  }
+  
+  .save-changes-button.enabled:hover {
+    background-color: #218838;
+  }
+  
+  .delete-order-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .delete-order-button:hover {
+    background-color: #c82333;
+  }
+
+  /* Estilização do formulário de endereço */
+.order-address {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.order-address h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.address-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.address-container .input-group {
+  flex: 1;
+  min-width: 48%;
+}
+
+.input-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: border-color 0.3s ease-in-out;
+  background-color: white;
+}
+
+.input-group input:focus {
+  border-color: #be8800;
+}
+
+/* Estilização do botão de salvar */
+.save-button {
+  margin-top: 15px;
+  padding: 12px 20px;
+  background-color: #be8800;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.save-button:hover {
+  background-color: #a37400;
+}
+
+  

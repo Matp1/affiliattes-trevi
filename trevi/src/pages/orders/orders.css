@@ -1,0 +1,145 @@
+.orders-page {
+    padding-top: 350px; /* Espaço para o Header fixo */
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  
+  .orders-title {
+    font-size: 22px;
+    font-family: 'Century Gothic', sans-serif;
+    line-height: 1.43;
+    margin-bottom: 50px;
+  }
+  
+  .table-wrapper {
+    overflow-x: auto;
+    background-color: #fff;
+    border: 0.5px solid #e0e0e0;
+    border-radius: 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    min-width: 600px;
+    margin-bottom: 150px;
+  }
+  
+  .line-item-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .line-item-table th,
+  .line-item-table td {
+    padding: 16px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .line-item__meta {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .line-item__title {
+    font-family: "Avenir Next", sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 4px;
+    color: #737b97;
+  }
+  
+  .line-item__price {
+    color: #BE8800;
+    font-weight: bold;
+  }
+  
+/* Status do pedido com cores pastel */
+.order-status {
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-transform: capitalize;
+    display: inline-block;
+  }
+  
+  /* Cores conforme o status em tons pastéis */
+  .order-status.aprovado {
+    color: #155724; /* Verde escuro para contraste */
+    background-color: #a4d4ae; /* Verde pastel */
+  }
+  
+  .order-status.pendente {
+    color: #856404; /* Amarelo escuro para contraste */
+    background-color: #f8e8a2; /* Amarelo pastel */
+  }
+  
+  .order-status.negado {
+    color: #721c24; /* Vermelho escuro para contraste */
+    background-color: #f5b7b1; /* Vermelho pastel */
+  }
+    
+  
+  th {
+    color: #737b97;
+    font-size: 14px;
+    font-weight: normal;
+  }
+  
+  .order-details-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .order-details-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Estilo para pedidos vazios */
+  .empty-orders-container {
+    margin-bottom: 150px;
+  }
+  
+  .empty-orders {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 50px;
+  }
+  
+  .empty-orders-text {
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 22px;
+    color: #000000;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+  
+  .empty-orders-button {
+    padding: 10px 20px;
+    background-color: #009640;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .empty-orders-button:hover {
+    background-color: #218838;
+  }
+  
