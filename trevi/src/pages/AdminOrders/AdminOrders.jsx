@@ -10,9 +10,9 @@ const AdminOrders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get("http://localhost:3010/admin/orders", {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/admin/orders`, {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        });
+        });        
 
         const ordersData = response.data;
 
@@ -22,11 +22,11 @@ const AdminOrders = () => {
             if (order.user && order.user.createdBy) {
               try {
                 const adminResponse = await axios.get(
-                  `http://localhost:3010/users/${order.user.createdBy}`,
+                  `${import.meta.env.VITE_API_URL}/users/${order.user.createdBy}`,
                   {
                     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
                   }
-                );
+                );                
 
                 if (adminResponse.status === 200) {
                   const adminData = adminResponse.data;
@@ -60,12 +60,12 @@ const AdminOrders = () => {
   const handleStatusChange = async (orderId, newStatus) => {
     try {
       await axios.put(
-        `http://localhost:3010/orders/${orderId}`,
+        `${import.meta.env.VITE_API_URL}/orders/${orderId}`,
         { status: newStatus },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
-      );
+      );      
 
       setOrders(orders.map(order => order.id === orderId ? { ...order, status: newStatus } : order));
       alert("Status atualizado com sucesso!");

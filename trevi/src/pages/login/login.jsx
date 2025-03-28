@@ -36,13 +36,14 @@ const LoginUsuario = () => {
       if (email) {
         await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulação de loading
     
-        const response = await fetch('http://localhost:3010/users/email', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/users/email`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ email: email }),
         });
+        
   
         if (!response.ok) {
           throw new Error('Usuário não encontrado');
@@ -75,11 +76,11 @@ const LoginUsuario = () => {
     setLoadingLogin(true);
   
     try {
-      const response = await fetch('http://localhost:3010/login', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password: senha }),
-      });
+      });    
   
       if (!response.ok) {
         throw new Error('Usuário ou senha incorretos!');

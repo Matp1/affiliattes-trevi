@@ -120,13 +120,14 @@ const CartPage = () => {
     if (!userId) return "Usuário Desconhecido"; // Evita erro se não houver userId
 
     try {
-      const response = await fetch(`http://localhost:3010/users/${userId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`, // Envia o token de autenticação
         },
       });
+      
 
       if (!response.ok) {
         throw new Error("Erro ao buscar usuário");
@@ -405,7 +406,7 @@ const CartPage = () => {
     console.log("📤 Enviando pedido para backend:", orderData);
 
     try {
-      const response = await fetch("http://localhost:3010/orders", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -413,6 +414,7 @@ const CartPage = () => {
         },
         body: JSON.stringify(orderData),
       });
+      
 
       if (!response.ok) {
         const errorText = await response.text();

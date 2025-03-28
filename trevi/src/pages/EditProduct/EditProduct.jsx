@@ -50,9 +50,12 @@ const EditProduct = () => {
 
         const fetchProduct = async () => {
             try {
-                const response = await axios.get(`http://localhost:3010/products/${id}`, {
-                    headers: { Authorization: `Bearer ${storedToken}` },
-                });
+                const response = await axios.get(
+                    `${import.meta.env.VITE_API_URL}/products/${id}`,
+                    {
+                      headers: { Authorization: `Bearer ${storedToken}` },
+                    }
+                  );                  
 
                 const product = response.data;
                 setFormData({
@@ -116,12 +119,13 @@ const EditProduct = () => {
                 imageUrl: imageUrls,
             };
     
-            await axios.put(`http://localhost:3010/products/${id}`, payload, {
+            await axios.put(`${import.meta.env.VITE_API_URL}/products/${id}`, payload, {
                 headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                  "Content-Type": "application/json",
                 },
-            });
+              });
+              
     
             alert("Produto atualizado com sucesso!"); // Exibe alerta
         } catch (error) {

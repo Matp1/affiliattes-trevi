@@ -18,12 +18,13 @@ const Category = () => {
         const fetchProducts = async () => {
             try {
                 const token = localStorage.getItem("token"); // 🔹 Pegando o token do usuário armazenado
-                const response = await fetch(`http://localhost:3010/products?category=${category}`, {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/products?category=${category}`, {
                     headers: {
-                        Authorization: `Bearer ${token}`, // 🔹 Adicionando o token no cabeçalho da requisição
-                        "Content-Type": "application/json",
+                      Authorization: `Bearer ${token}`, // 🔹 Adicionando o token no cabeçalho da requisição
+                      "Content-Type": "application/json",
                     },
-                });
+                  });
+                  
 
                 if (response.status === 401) {
                     console.error("Erro 401: Não autorizado! Verifique o token.");

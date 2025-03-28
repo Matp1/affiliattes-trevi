@@ -9,11 +9,11 @@ const AdminUsers = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch("http://localhost:3010/users", {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
-        });
+        });        
 
         if (!response.ok) {
           throw new Error("Erro ao buscar usuários");
@@ -25,9 +25,12 @@ const AdminUsers = () => {
         const usersWithAdminNames = await Promise.all(
           usersData.map(async (user) => {
             if (user.createdBy) {
-              const adminResponse = await fetch(`http://localhost:3010/users/${user.createdBy}`, {
-                headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-              });
+              const adminResponse = await fetch(
+                `${import.meta.env.VITE_API_URL}/users/${user.createdBy}`,
+                {
+                  headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+                }
+              );              
 
               if (adminResponse.ok) {
                 const adminData = await adminResponse.json();
@@ -51,12 +54,12 @@ const AdminUsers = () => {
     if (!window.confirm("Tem certeza que deseja excluir este usuário?")) return;
 
     try {
-      const response = await fetch(`http://localhost:3010/users/${userId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-      });
+      });      
 
       if (!response.ok) {
         throw new Error("Erro ao excluir usuário");
@@ -74,14 +77,14 @@ const AdminUsers = () => {
     const parsedLevel = parseInt(newLevel, 10);
   
     try {
-      const response = await fetch(`http://localhost:3010/users/${userId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({ level: parsedLevel }),
-      });
+      });      
   
       if (!response.ok) {
         const errorData = await response.json();

@@ -86,13 +86,14 @@ const Home = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:3010/products', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/products`, {
           method: 'GET',
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
           },
         });
+      
 
         if (!response.ok) {
           throw new Error('Erro ao buscar produtos');

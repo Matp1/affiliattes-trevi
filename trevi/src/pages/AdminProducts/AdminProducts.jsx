@@ -11,14 +11,18 @@ const AdminProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:3010/admin/products", {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        });
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/admin/products`,
+          {
+            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+          }
+        );
         setProducts(response.data);
       } catch (error) {
         console.error("Erro ao buscar produtos:", error);
       }
     };
+    
 
     fetchProducts();
   }, []);
@@ -29,9 +33,12 @@ const AdminProducts = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:3010/products/${productId}`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      });
+      await axios.delete(
+        `${import.meta.env.VITE_API_URL}/products/${productId}`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );      
 
       // Remove o produto da lista no frontend
       setProducts(products.filter((product) => product.id !== productId));

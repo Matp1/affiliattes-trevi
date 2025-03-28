@@ -75,18 +75,19 @@ const CadastroUsuario = () => {
 
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:3010/users', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: nome,
           email,
-          phone: telefone, // ✅ Telefone agora é enviado
+          phone: telefone,      // ✅ Telefone agora é enviado
           password: senha,
-          isAdmin: isAdmin, // ✅ Define corretamente se será admin
-          createdBy: adminId, // ✅ Registra quem criou
+          isAdmin: isAdmin,      // ✅ Define corretamente se será admin
+          createdBy: adminId,    // ✅ Registra quem criou
         }),
       });
+      
 
       if (!response.ok) {
         throw new Error('Erro ao criar usuário.');
