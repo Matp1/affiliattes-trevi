@@ -24,7 +24,9 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5173",
   "https://affiliattes-trevi-front-58c0p0aua.vercel.app",
+  "https://affiliattes-trevi-front-pub1b76z3.vercel.app", // <- ADICIONE ESTE
 ];
+
 
 app.use(cors({
   origin: (origin, callback) => {
