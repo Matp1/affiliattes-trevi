@@ -21,11 +21,23 @@ dotenv.config();
 const app = express();
 
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://affiliattes-trevi-front-58c0p0aua.vercel.app",
+];
+
 app.use(cors({
-  origin: "http://localhost:5173", // Permite o frontend
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Não permitido por CORS"));
+    }
+  },
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization", "x-socket-id"],
 }));
+
 
 app.use(express.json()); // Suporte para JSON
 
