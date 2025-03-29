@@ -833,10 +833,15 @@ const httpServer = app.listen(PORT, () => {
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: [
+      "http://localhost:5173",
+      "https://affiliattes-trevi-front-58c0p0aua.vercel.app",
+      "https://affiliattes-trevi-front-pub1b76z3.vercel.app" // adicione aqui o novo domínio que deu erro
+    ],
     methods: ["GET", "POST"],
   },
 });
+
 
 io.on("connection", (socket) => {
   console.log(`Cliente conectado: ${socket.id}`);
