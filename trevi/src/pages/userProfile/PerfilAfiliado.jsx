@@ -61,9 +61,9 @@ const UserProfile = () => {
   useEffect(() => {
     const fetchUserCommission = async () => {
       try {
-        const response = await axios.get(`http://localhost:3010/commission/${userId}`, {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/commission/${userId}`, {
           headers: { Authorization: `Bearer ${token}` },
-        });
+        });        
 
         if (response.status === 200) {
           setUserLevel(response.data.userLevel);
@@ -87,12 +87,12 @@ const UserProfile = () => {
 
     try {
       // Atualizar comissão do usuário no banco
-      await axios.post("http://localhost:3010/commission", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/commission`, {
         userId,
         commission: commissionValue,
       }, {
         headers: { Authorization: `Bearer ${token}` },
-      });
+      });      
 
       // Armazenar a comissão no localStorage para uso em outras partes do site
       localStorage.setItem("userCommission", commissionValue);
@@ -106,9 +106,11 @@ const UserProfile = () => {
 
   const handleCompleteProfile = async () => {
     try {
-      await axios.put(`http://localhost:3010/users/${userId}`, { profileCompleted: true }, {
+      await axios.put(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
+        profileCompleted: true,
+      }, {
         headers: { Authorization: `Bearer ${token}` },
-      });
+      });      
 
       localStorage.setItem("profileCompleted", "true");
       alert("Cadastro concluído com sucesso!");
@@ -133,9 +135,10 @@ const UserProfile = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:3010/products/increase-prices", {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/products/increase-prices`, {
         percentage: parseFloat(productIncrease),
-      }, {
+      }, 
+      {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -155,9 +158,9 @@ const UserProfile = () => {
     const fetchUserData = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`http://localhost:3010/users/${userId}`, {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
           headers: { Authorization: `Bearer ${token}` },
-        });
+        });        
 
         const user = response.data;
 
@@ -256,9 +259,10 @@ const UserProfile = () => {
     const fetchUserData = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`http://localhost:3010/users/${userId}`, {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
+        
 
         const user = response.data;
 
@@ -334,12 +338,17 @@ const UserProfile = () => {
     formData.append("avatar", avatarFile);
 
     try {
-      const response = await axios.post(`http://localhost:3010/users/${userId}/avatar`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/users/${userId}/avatar`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      
 
       setUserData((prevData) => ({
         ...prevData,
@@ -374,15 +383,15 @@ const UserProfile = () => {
 
       console.log("📢 Payload enviado para o backend:", payload); // Debug
 
-      await axios.put(`http://localhost:3010/users/${userId}`, payload, {
+      await axios.put(`${import.meta.env.VITE_API_URL}/users/${userId}`, payload, {
         headers: { Authorization: `Bearer ${token}` },
       });
-
+      
       // Buscar os dados mais recentes do usuário após a atualização
-      const response = await axios.get(`http://localhost:3010/users/${userId}`, {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-
+      
       const updatedUser = response.data;
       console.log("✅ Dados do usuário atualizados:", updatedUser);
 
@@ -400,9 +409,9 @@ const UserProfile = () => {
 
       // Se todos os campos obrigatórios estiverem preenchidos, definir `profileCompleted`
       if (isProfileComplete) {
-        await axios.put(`http://localhost:3010/users/${userId}`, { profileCompleted: true }, {
+        await axios.put(`${import.meta.env.VITE_API_URL}/users/${userId}`, { profileCompleted: true }, {
           headers: { Authorization: `Bearer ${token}` },
-        });
+        });        
 
         localStorage.setItem("profileCompleted", "true");
 
@@ -578,19 +587,18 @@ const UserProfile = () => {
                 onChange={async (e) => {
                   if (e.target.checked) {
                     try {
-                      await axios.put(`http://localhost:3010/users/${userId}`, {
+                      await api.put(`/users/${userId}`, {
                         hasAcceptedTerms: true,
-                      }, {
-                        headers: { Authorization: `Bearer ${token}` },
                       });
-
+                    
                       setUserData((prev) => ({
                         ...prev,
                         hasAcceptedTerms: true,
                       }));
-
+                    
                       alert("Você aceitou os Termos de Afiliação.");
-                    } catch (err) {
+                    }
+                    catch (err) {
                       console.error("Erro ao salvar aceite dos termos:", err);
                       alert("Erro ao salvar o aceite dos termos.");
                     }

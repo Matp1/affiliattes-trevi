@@ -64,7 +64,7 @@ const OrderDetails = () => {
     // Função para salvar as alterações no backend
     const handleSaveAddress = async () => {
         try {
-            const response = await fetch(`http://localhost:3010/orders/${order.id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/orders/${order.id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -72,6 +72,7 @@ const OrderDetails = () => {
                 },
                 body: JSON.stringify({ adress: orderAddress }),
             });
+            
 
             if (!response.ok) {
                 throw new Error("Erro ao atualizar endereço.");
@@ -88,13 +89,14 @@ const OrderDetails = () => {
         if (!userId) return; // ✅ Evita erro se `userId` for undefined
 
         try {
-            const response = await fetch(`http://localhost:3010/users/${userId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
             });
+            
 
             if (!response.ok) {
                 throw new Error("Erro ao buscar nível do usuário.");
@@ -153,13 +155,14 @@ const OrderDetails = () => {
     const fetchOrderDetails = async () => {
         setLoading(true);
         try {
-            const response = await fetch(`http://localhost:3010/orders/details/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/orders/details/${id}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
             });
+            
 
             if (!response.ok) {
                 throw new Error("Erro ao buscar detalhes do pedido.");
@@ -216,12 +219,13 @@ const OrderDetails = () => {
 
     const saveOrderChanges = async () => {
         try {
-            const response = await fetch(`http://localhost:3010/orders/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/orders/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
+            
                 body: JSON.stringify({
                     status: order.status,
                     items: order.items.map(item => ({
@@ -251,13 +255,14 @@ const OrderDetails = () => {
         if (!window.confirm("Tem certeza que deseja excluir este pedido?")) return;
 
         try {
-            const response = await fetch(`http://localhost:3010/orders/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/orders/${id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
             });
+            ;
 
             if (!response.ok) {
                 throw new Error("Erro ao excluir pedido.");
@@ -289,13 +294,13 @@ const OrderDetails = () => {
     
         // Buscar o limite de comissão do usuário no backend
         try {
-            const response = await fetch(`http://localhost:3010/commission/${order.userId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/commission/${order.userId}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
-            });
+            });            
     
             if (!response.ok) {
                 throw new Error("Erro ao buscar limite de comissão.");
@@ -313,13 +318,13 @@ const OrderDetails = () => {
             const updatedItems = await Promise.all(
                 order.items.map(async (item) => {
                     try {
-                        const productResponse = await fetch(`http://localhost:3010/products/${item.productId}`, {
+                        const productResponse = await fetch(`${import.meta.env.VITE_API_URL}/products/${item.productId}`, {
                             method: "GET",
                             headers: {
                                 "Content-Type": "application/json",
                                 Authorization: `Bearer ${localStorage.getItem("token")}`,
                             },
-                        });
+                        });                        
     
                         if (!productResponse.ok) throw new Error("Erro ao buscar produto");
     

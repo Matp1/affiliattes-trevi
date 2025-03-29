@@ -23,13 +23,14 @@ const Orders = () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:3010/orders/${userId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/orders/${userId}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
             });
+            
 
             if (!response.ok) {
                 throw new Error("Erro ao buscar pedidos.");

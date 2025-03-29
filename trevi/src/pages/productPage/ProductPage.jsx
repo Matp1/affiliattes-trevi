@@ -92,7 +92,7 @@ const ProductPage = () => {
 
   const handleBuyNow = async () => {
     try {
-      const response = await fetch('http://localhost:3010/orders', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/orders`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -100,6 +100,7 @@ const ProductPage = () => {
         },
         body: JSON.stringify({ productId: product.id, quantity })
       });
+      
 
       if (!response.ok) throw new Error('Falha ao processar pedido!');
       alert('Pedido realizado com sucesso!');
@@ -134,11 +135,12 @@ const ProductPage = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://localhost:3010/products/${id}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/products/${id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`, // Token JWT
           },
         });
+        
         const data = await response.json();
 
         if (response.ok) {

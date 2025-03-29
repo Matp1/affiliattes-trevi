@@ -66,12 +66,12 @@ const CadastroProduto = () => {
     formData.append("file", file);
 
     try {
-      const response = await axios.post("http://localhost:3010/products/import", formData, {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/products/import`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
         },
-      });
+      });      
 
       setImportMessage(response.data.message);
     } catch (error) {
@@ -209,12 +209,12 @@ const handleEditorChange = (content, editor) => {
 
         console.log("📤 Enviando Payload para o Backend:", JSON.stringify(payload, null, 2));
 
-        const response = await axios.post("http://localhost:3010/products", payload, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json",
-            },
-        });
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/products`, payload, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });        
 
         console.log("✅ Produto cadastrado com sucesso:", response.data);
         setMessage(`Produto "${response.data.name}" cadastrado com sucesso!`);
