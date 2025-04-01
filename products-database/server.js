@@ -21,24 +21,26 @@ dotenv.config();
 const app = express();
 
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://affiliattes-trevi-front-58c0p0aua.vercel.app",
-  "https://affiliattes-trevi-front-pub1b76z3.vercel.app", // <- ADICIONE ESTE
-];
-
-
 app.use(cors({
   origin: (origin, callback) => {
+    const allowedOrigins = [
+      "http://localhost:5173",
+      "https://affiliattes-trevi-front-58c0p0aua.vercel.app",
+      "https://affiliattes-trevi-front-pub1b76z3.vercel.app",
+      "https://affiliattes-trevi-front-h3apct1ac.vercel.app",
+      "https://affiliattes-trevi-front.vercel.app",
+    ];
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error("Não permitido por CORS"));
     }
   },
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "x-socket-id"],
 }));
+
 
 
 app.use(express.json()); // Suporte para JSON
@@ -332,14 +334,24 @@ app.delete('/users/:id', authenticateToken, async (req, res) => {
 
 // Buscar Usuário por E-mail
 app.post('/users/email', async (req, res) => {
+  console.log("📨 Body recebido em /users/email:", req.body);
+
   try {
+    if (!req.body.email) {
+      return res.status(400).json({ error: "Email é obrigatório." });
+    }
+
     const user = await prisma.user.findUnique({ where: { email: req.body.email } });
+
     if (!user) return res.status(404).json({ error: "Usuário não encontrado" });
+
     res.json(user);
   } catch (error) {
+    console.error("Erro ao buscar usuário por e-mail:", error);
     res.status(500).json({ error: "Erro ao buscar usuário por e-mail." });
   }
 });
+
 
 app.post("/users/:id/avatar", upload.single("avatar"), async (req, res) => {
   try {
