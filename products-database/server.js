@@ -29,6 +29,8 @@ app.use(cors({
       "https://affiliattes-trevi-front-pub1b76z3.vercel.app",
       "https://affiliattes-trevi-front-h3apct1ac.vercel.app",
       "https://affiliattes-trevi-front.vercel.app",
+      "https://afiliadostreviart.store",
+      "https://www.afiliadostreviart.store",
     ];
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
@@ -250,7 +252,7 @@ app.get("/users/:id", authenticateToken, async (req, res) => {
 // Atualizar Usuário
 app.put('/users/:id', authenticateToken, async (req, res) => {
   try {
-    const { name, phone, password, document, adress, level, profileCompleted, hasAcceptedTerms   } = req.body;
+    const { name, phone, password, document, adress, level, profileCompleted, hasAcceptedTerms } = req.body;
     const userId = req.params.id;
 
     if (!userId || userId === "undefined") {
@@ -297,14 +299,14 @@ app.put('/users/:id', authenticateToken, async (req, res) => {
         where: { id: userId },
         select: { hasAcceptedTerms: true },
       });
-    
+
       if (!existingUser.hasAcceptedTerms) {
         data.hasAcceptedTerms = true;
       }
     }
-    
-    
-    
+
+
+
     console.log("📥 Dados recebidos no backend:", JSON.stringify(req.body, null, 2));
 
 
@@ -732,90 +734,90 @@ app.get('/orders/:userId', authenticateToken, async (req, res) => {
 
 app.get('/orders/details/:orderId', authenticateToken, async (req, res) => {
   try {
-      const order = await prisma.order.findUnique({
-          where: { id: req.params.orderId },
-          select: {
-              id: true,
-              orderName: true,
-              items: true,
-              totalPrice: true,
-              adress: true,  // ✅ Incluindo `adress` explicitamente
-              status: true,
-              createdAt: true,
-              userId: true,
-          }
-      });
-
-      if (!order) {
-          return res.status(404).json({ error: "Pedido não encontrado." });
+    const order = await prisma.order.findUnique({
+      where: { id: req.params.orderId },
+      select: {
+        id: true,
+        orderName: true,
+        items: true,
+        totalPrice: true,
+        adress: true,  // ✅ Incluindo `adress` explicitamente
+        status: true,
+        createdAt: true,
+        userId: true,
       }
+    });
 
-      // 🛠️ Garante que `items` seja um array no backend
-      order.items = typeof order.items === "string" ? JSON.parse(order.items) : order.items;
+    if (!order) {
+      return res.status(404).json({ error: "Pedido não encontrado." });
+    }
 
-      // ✅ Se `adress` for `null`, define um objeto vazio para evitar erro no frontend
-      order.adress = order.adress || {
-          cep: "",
-          rua: "",
-          numero: "",
-          complemento: "",
-          bairro: "",
-          cidade: "",
-          estado: "",
-          referencia: "",
-      };
+    // 🛠️ Garante que `items` seja um array no backend
+    order.items = typeof order.items === "string" ? JSON.parse(order.items) : order.items;
 
-      res.json(order);
+    // ✅ Se `adress` for `null`, define um objeto vazio para evitar erro no frontend
+    order.adress = order.adress || {
+      cep: "",
+      rua: "",
+      numero: "",
+      complemento: "",
+      bairro: "",
+      cidade: "",
+      estado: "",
+      referencia: "",
+    };
+
+    res.json(order);
   } catch (error) {
-      console.error("Erro ao buscar pedido:", error);
-      res.status(500).json({ error: "Erro ao buscar pedido." });
+    console.error("Erro ao buscar pedido:", error);
+    res.status(500).json({ error: "Erro ao buscar pedido." });
   }
 });
 
 
 app.put('/orders/:orderId', authenticateToken, async (req, res) => {
   try {
-      const { status, items, totalPrice, commission, adress } = req.body;
+    const { status, items, totalPrice, commission, adress } = req.body;
 
-      // Verifica se o pedido existe
-      const order = await prisma.order.findUnique({
-          where: { id: req.params.orderId },
-      });
+    // Verifica se o pedido existe
+    const order = await prisma.order.findUnique({
+      where: { id: req.params.orderId },
+    });
 
-      if (!order) {
-          return res.status(404).json({ error: "Pedido não encontrado." });
-      }
+    if (!order) {
+      return res.status(404).json({ error: "Pedido não encontrado." });
+    }
 
-      // Recalcular o total do pedido aplicando a comissão, se necessário
-      let updatedTotalPrice = totalPrice;
-      if (commission !== undefined) {
-          const commissionMultiplier = 1 + (commission / 100);
-          updatedTotalPrice = totalPrice * commissionMultiplier;
-      }
+    // Recalcular o total do pedido aplicando a comissão, se necessário
+    let updatedTotalPrice = totalPrice;
+    if (commission !== undefined) {
+      const commissionMultiplier = 1 + (commission / 100);
+      updatedTotalPrice = totalPrice * commissionMultiplier;
+    }
 
-      // Criar objeto de atualização dinâmico
-      let updateData = {
-          status,
-          items,
-          totalPrice: updatedTotalPrice, // 🔹 Agora o total inclui a comissão!
-          commission,
-      };
+    // Criar objeto de atualização dinâmico
+    let updateData = {
+      status,
+      items,
+      totalPrice: updatedTotalPrice, // 🔹 Agora o total inclui a comissão!
+      commission,
+    };
 
-      // Se o endereço foi enviado, atualiza ele também
-      if (adress) {
-          updateData.adress = adress;
-      }
+    // Se o endereço foi enviado, atualiza ele também
+    if (adress) {
+      updateData.adress = adress;
+    }
 
-      // Atualiza os dados do pedido no banco
-      const updatedOrder = await prisma.order.update({
-          where: { id: req.params.orderId },
-          data: updateData,
-      });
+    // Atualiza os dados do pedido no banco
+    const updatedOrder = await prisma.order.update({
+      where: { id: req.params.orderId },
+      data: updateData,
+    });
 
-      res.json(updatedOrder);
+    res.json(updatedOrder);
   } catch (error) {
-      console.error("Erro ao atualizar pedido:", error);
-      res.status(500).json({ error: "Erro ao atualizar pedido." });
+    console.error("Erro ao atualizar pedido:", error);
+    res.status(500).json({ error: "Erro ao atualizar pedido." });
   }
 });
 

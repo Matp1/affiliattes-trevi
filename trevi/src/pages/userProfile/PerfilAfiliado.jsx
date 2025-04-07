@@ -378,8 +378,10 @@ const UserProfile = () => {
       const payload = {
         name: userData.name || "",
         document: userData.document || "",
-        adress: completeAddress, // ✅ Agora os campos vazios serão enviados como `null` e não strings vazias
+        adress: completeAddress,
+        ...(userData.password && { password: userData.password }), // ← só envia se tiver valor
       };
+      
 
       console.log("📢 Payload enviado para o backend:", payload); // Debug
 
