@@ -263,7 +263,7 @@ app.put('/users/:id', authenticateToken, async (req, res) => {
     let data = { name, phone, document, adress };
 
     if (tipoPessoa !== undefined) {
-      data.tipoPessoa = tipoPessoa;
+      data.tipoPessoa = tipoPessoa?.toLowerCase() ?? null;
     }
 
     if (profileCompleted !== undefined) {

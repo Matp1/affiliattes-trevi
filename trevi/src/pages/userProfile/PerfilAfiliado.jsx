@@ -63,7 +63,7 @@ const UserProfile = () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/commission/${userId}`, {
           headers: { Authorization: `Bearer ${token}` },
-        });        
+        });
 
         if (response.status === 200) {
           setUserLevel(response.data.userLevel);
@@ -92,7 +92,7 @@ const UserProfile = () => {
         commission: commissionValue,
       }, {
         headers: { Authorization: `Bearer ${token}` },
-      });      
+      });
 
       // Armazenar a comissão no localStorage para uso em outras partes do site
       localStorage.setItem("userCommission", commissionValue);
@@ -110,7 +110,7 @@ const UserProfile = () => {
         profileCompleted: true,
       }, {
         headers: { Authorization: `Bearer ${token}` },
-      });      
+      });
 
       localStorage.setItem("profileCompleted", "true");
       alert("Cadastro concluído com sucesso!");
@@ -137,10 +137,10 @@ const UserProfile = () => {
     try {
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/products/increase-prices`, {
         percentage: parseFloat(productIncrease),
-      }, 
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        });
 
       if (response.status === 200) {
         alert("Preços dos produtos atualizados com sucesso!");
@@ -160,7 +160,7 @@ const UserProfile = () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
           headers: { Authorization: `Bearer ${token}` },
-        });        
+        });
 
         const user = response.data;
 
@@ -262,7 +262,7 @@ const UserProfile = () => {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        
+
 
         const user = response.data;
 
@@ -281,7 +281,7 @@ const UserProfile = () => {
           },
         });
 
-        setTipoPessoa(user.tipoPessoa);
+        setTipoPessoa(user.tipoPessoa?.toLowerCase() || "fisica");
       } catch (error) {
         console.error("Erro ao buscar usuário:", error);
         alert("Erro ao carregar os dados do usuário.");
@@ -314,26 +314,26 @@ const UserProfile = () => {
   // Atualiza a pré-visualização da imagem ao selecionar um novo arquivo
   const handleAvatarChange = async (e) => {
     const file = e.target.files[0];
-  
+
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
         setTempAvatar(reader.result);
       };
       reader.readAsDataURL(file);
-  
+
       setAvatarFile(file);
       setHasUnsavedChanges(true);
-  
+
       // Envia automaticamente
       await uploadAvatar(file);
     }
   };
-  
+
   const uploadAvatar = async (file) => {
     const formData = new FormData();
     formData.append("avatar", file);
-  
+
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/users/${userId}/avatar`,
@@ -345,7 +345,7 @@ const UserProfile = () => {
           },
         }
       );
-  
+
       setUserData((prevData) => ({
         ...prevData,
         avatarUrl: response.data.avatarUrl,
@@ -359,7 +359,7 @@ const UserProfile = () => {
       alert("Erro ao fazer upload do avatar.");
     }
   };
-  
+
 
 
 
@@ -379,19 +379,19 @@ const UserProfile = () => {
         adress: completeAddress,
         ...(userData.password && { password: userData.password }), // ← só envia se tiver valor
       };
-      
+
 
       console.log("📢 Payload enviado para o backend:", payload); // Debug
 
       await axios.put(`${import.meta.env.VITE_API_URL}/users/${userId}`, payload, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      
+
       // Buscar os dados mais recentes do usuário após a atualização
       const response = await axios.get(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      
+
       const updatedUser = response.data;
       console.log("✅ Dados do usuário atualizados:", updatedUser);
 
@@ -411,7 +411,7 @@ const UserProfile = () => {
       if (isProfileComplete) {
         await axios.put(`${import.meta.env.VITE_API_URL}/users/${userId}`, { profileCompleted: true }, {
           headers: { Authorization: `Bearer ${token}` },
-        });        
+        });
 
         localStorage.setItem("profileCompleted", "true");
 
@@ -505,7 +505,10 @@ const UserProfile = () => {
           {/* Seleção de Pessoa Física ou Jurídica */}
           <div className="input-group">
             <label>Você é Pessoa Física ou Jurídica?</label>
-            <select value={tipoPessoa} onChange={(e) => setTipoPessoa(e.target.value)}>
+            <select
+              value={tipoPessoa || "fisica"}
+              onChange={(e) => setTipoPessoa(e.target.value)}
+            >
               <option value="fisica">Pessoa Física</option>
               <option value="juridica">Pessoa Jurídica</option>
             </select>
@@ -590,12 +593,12 @@ const UserProfile = () => {
                       await api.put(`/users/${userId}`, {
                         hasAcceptedTerms: true,
                       });
-                    
+
                       setUserData((prev) => ({
                         ...prev,
                         hasAcceptedTerms: true,
                       }));
-                    
+
                       alert("Você aceitou os Termos de Afiliação.");
                     }
                     catch (err) {
