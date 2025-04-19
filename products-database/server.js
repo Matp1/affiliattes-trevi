@@ -252,7 +252,7 @@ app.get("/users/:id", authenticateToken, async (req, res) => {
 // Atualizar Usuário
 app.put('/users/:id', authenticateToken, async (req, res) => {
   try {
-    const { name, phone, password, document, adress, level, profileCompleted, hasAcceptedTerms } = req.body;
+    const { name, phone, password, document, adress, level, profileCompleted, hasAcceptedTerms, tipoPessoa } = req.body;
     const userId = req.params.id;
 
     if (!userId || userId === "undefined") {
@@ -261,6 +261,10 @@ app.put('/users/:id', authenticateToken, async (req, res) => {
 
     // Inicializa objeto para atualização
     let data = { name, phone, document, adress };
+
+    if (tipoPessoa !== undefined) {
+      data.tipoPessoa = tipoPessoa;
+    }
 
     if (profileCompleted !== undefined) {
       data.profileCompleted = profileCompleted;
