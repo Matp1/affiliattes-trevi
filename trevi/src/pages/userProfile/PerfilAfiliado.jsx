@@ -152,8 +152,6 @@ const UserProfile = () => {
   };
 
   // Buscar dados do usuário ao carregar a página
-
-  // Buscar dados do usuário ao carregar a página
   useEffect(() => {
     const fetchUserData = async () => {
       setLoading(true);
@@ -161,19 +159,21 @@ const UserProfile = () => {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-
+  
         const user = response.data;
-
+  
+        // Atualiza dados principais
         setUserData({
           id: user.id,
           name: user.name,
           email: user.email,
           phone: user.phone,
           document: user.document || "",
+          password: "", // campo vazio por padrão
           avatarUrl: user.avatarUrl || "images/defaultUserIcon.png",
         });
-
-        // Garante que o endereço nunca será null
+  
+        // Atualiza endereço (ou usa padrão vazio)
         setUserAddress(user.adress || {
           cep: "",
           rua: "",
@@ -184,7 +184,10 @@ const UserProfile = () => {
           bairro: "",
           referencia: "",
         });
-
+  
+        // Atualiza tipo de pessoa (fallback: 'fisica')
+        setTipoPessoa(user.tipoPessoa?.toLowerCase() || "fisica");
+  
       } catch (error) {
         console.error("Erro ao buscar usuário:", error);
         alert("Erro ao carregar os dados do usuário.");
@@ -192,13 +195,13 @@ const UserProfile = () => {
         setLoading(false);
       }
     };
-
-    setTipoPessoa(user.tipoPessoa?.toLowerCase() || "fisica");
-    
+  
     if (userId) {
       fetchUserData();
     }
   }, [userId, token]);
+  
+  
 
   // Formatar CPF e CNPJ automaticamente
   const formatDocument = (value) => {
@@ -256,7 +259,6 @@ const UserProfile = () => {
       }));
     }
   };
-
 
   // Alerta ao sair se houver mudanças não salvas
   useEffect(() => {
