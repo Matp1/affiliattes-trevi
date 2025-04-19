@@ -312,31 +312,28 @@ const UserProfile = () => {
   }, [hasUnsavedChanges]);
 
   // Atualiza a pré-visualização da imagem ao selecionar um novo arquivo
-  const handleAvatarChange = (e) => {
+  const handleAvatarChange = async (e) => {
     const file = e.target.files[0];
-
+  
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
         setTempAvatar(reader.result);
       };
       reader.readAsDataURL(file);
-
+  
       setAvatarFile(file);
-      setHasUnsavedChanges(true); // Marcamos que há mudanças
+      setHasUnsavedChanges(true);
+  
+      // Envia automaticamente
+      await uploadAvatar(file);
     }
   };
-
-  // Salva a nova imagem no servidor
-  const handleAvatarUpload = async () => {
-    if (!avatarFile) {
-      alert("Por favor, selecione uma imagem para upload.");
-      return;
-    }
-
+  
+  const uploadAvatar = async (file) => {
     const formData = new FormData();
-    formData.append("avatar", avatarFile);
-
+    formData.append("avatar", file);
+  
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/users/${userId}/avatar`,
@@ -348,21 +345,21 @@ const UserProfile = () => {
           },
         }
       );
-      
-
+  
       setUserData((prevData) => ({
         ...prevData,
         avatarUrl: response.data.avatarUrl,
       }));
-      setTempAvatar(null); // Remove a pré-visualização após salvar
+      setTempAvatar(null);
       setAvatarFile(null);
-      setHasUnsavedChanges(false); // Resetamos as mudanças
+      setHasUnsavedChanges(false);
       alert("Avatar atualizado com sucesso!");
     } catch (err) {
       console.error("Erro ao fazer upload do avatar:", err);
       alert("Erro ao fazer upload do avatar.");
     }
   };
+  
 
 
 

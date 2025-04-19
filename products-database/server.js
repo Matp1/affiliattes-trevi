@@ -326,13 +326,27 @@ app.put('/users/:id', authenticateToken, async (req, res) => {
 
 // Deletar Usuário
 app.delete('/users/:id', authenticateToken, async (req, res) => {
+  const userId = req.params.id;
+
   try {
-    await prisma.user.delete({ where: { id: req.params.id } });
-    res.json({ message: "Usuário deletado com sucesso!" });
+    // Excluir todos os pedidos do usuário
+    await prisma.order.deleteMany({
+      where: { userId },
+    });
+
+    // Agora sim, pode excluir o usuário
+    await prisma.user.delete({
+      where: { id: userId },
+    });
+
+    res.json({ message: "Usuário e pedidos deletados com sucesso!" });
   } catch (error) {
-    res.status(400).json({ error: "Erro ao deletar usuário." });
+    console.error("Erro ao deletar usuário:", error);
+    res.status(500).json({ error: "Erro ao deletar usuário." });
   }
 });
+
+
 
 // Buscar Usuário por E-mail
 app.post('/users/email', async (req, res) => {
