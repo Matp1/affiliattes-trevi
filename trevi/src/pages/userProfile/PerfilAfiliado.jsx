@@ -281,7 +281,7 @@ const UserProfile = () => {
           },
         });
 
-        setTipoPessoa(user.document?.length === 14 ? "fisica" : "juridica");
+        setTipoPessoa(user.tipoPessoa || "fisica");
       } catch (error) {
         console.error("Erro ao buscar usuário:", error);
         alert("Erro ao carregar os dados do usuário.");
@@ -375,7 +375,7 @@ const UserProfile = () => {
       const payload = {
         name: userData.name || "",
         document: userData.document || "",
-        tipoPessoa: tipoPessoa || "",
+        tipoPessoa: tipoPessoa,
         adress: completeAddress,
         ...(userData.password && { password: userData.password }), // ← só envia se tiver valor
       };

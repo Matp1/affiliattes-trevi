@@ -38,7 +38,7 @@ model User {
   adress    Json?
   profileCompleted Boolean @default(false) // ✅ Novo campo
   hasAcceptedTerms Boolean @default(false)
-  tipoPessoa  String?
+  tipoPessoa  String      @default("Jurídica")
 }
 
 model Order {
