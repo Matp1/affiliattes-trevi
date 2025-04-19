@@ -154,6 +154,49 @@ const UserProfile = () => {
   // Buscar dados do usuário ao carregar a página
 
   // Buscar dados do usuário ao carregar a página
+  useEffect(() => {
+    const fetchUserData = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        const user = response.data;
+
+        setUserData({
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          phone: user.phone,
+          document: user.document || "",
+          avatarUrl: user.avatarUrl || "images/defaultUserIcon.png",
+        });
+
+        // Garante que o endereço nunca será null
+        setUserAddress(user.adress || {
+          cep: "",
+          rua: "",
+          numero: "",
+          complemento: "",
+          cidade: "",
+          estado: "",
+          bairro: "",
+          referencia: "",
+        });
+
+      } catch (error) {
+        console.error("Erro ao buscar usuário:", error);
+        alert("Erro ao carregar os dados do usuário.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (userId) {
+      fetchUserData();
+    }
+  }, [userId, token]);
 
   // Formatar CPF e CNPJ automaticamente
   const formatDocument = (value) => {
