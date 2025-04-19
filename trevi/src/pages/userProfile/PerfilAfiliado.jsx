@@ -193,6 +193,8 @@ const UserProfile = () => {
       }
     };
 
+    setTipoPessoa(user.tipoPessoa?.toLowerCase() || "fisica");
+    
     if (userId) {
       fetchUserData();
     }
@@ -254,46 +256,6 @@ const UserProfile = () => {
       }));
     }
   };
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-
-
-        const user = response.data;
-
-        setUserData({
-          ...user,
-          document: user.document || "", // ✅ Garante que não será `null`
-          adress: user.adress || { // ✅ Se `adress` vier como `null`, definimos um objeto padrão
-            cep: "",
-            rua: "",
-            numero: "",
-            complemento: "",
-            cidade: "",
-            estado: "",
-            bairro: "",
-            referencia: "",
-          },
-        });
-
-        setTipoPessoa(user.tipoPessoa?.toLowerCase() || "fisica");
-      } catch (error) {
-        console.error("Erro ao buscar usuário:", error);
-        alert("Erro ao carregar os dados do usuário.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (userId) {
-      fetchUserData();
-    }
-  }, [userId, token]);
 
 
   // Alerta ao sair se houver mudanças não salvas
