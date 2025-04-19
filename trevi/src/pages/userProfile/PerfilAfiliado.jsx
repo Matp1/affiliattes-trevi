@@ -281,7 +281,7 @@ const UserProfile = () => {
           },
         });
 
-        setTipoPessoa(user.tipoPessoa || "fisica");
+        setTipoPessoa(user.tipoPessoa);
       } catch (error) {
         console.error("Erro ao buscar usuário:", error);
         alert("Erro ao carregar os dados do usuário.");
