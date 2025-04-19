@@ -222,6 +222,7 @@ app.get("/users/:id", authenticateToken, async (req, res) => {
         adress: true, // ✅ Incluindo endereço completo
         avatarUrl: true,
         hasAcceptedTerms: true,
+        tipoPessoa: true, // ✅ Isso resolve o problema!
       },
     });
 
@@ -428,18 +429,41 @@ app.post("/products", authenticateToken, async (req, res) => {
       return res.status(404).json({ error: "Usuário não encontrado." });
     }
 
+    // Buscar o maior SKU existente com prefixo "TRV"
+    const lastProductWithSku = await prisma.product.findMany({
+      where: {
+        sku: {
+          startsWith: "TRV",
+        },
+      },
+      orderBy: {
+        sku: 'desc',
+      },
+      take: 1,
+    });
+
+    let nextSku = "TRV01";
+    if (lastProductWithSku.length > 0) {
+      const lastSku = lastProductWithSku[0].sku;
+      const lastNumber = parseInt(lastSku.replace("TRV", ""), 10);
+      const nextNumber = (lastNumber + 1).toString().padStart(2, "0");
+      nextSku = `TRV${nextNumber}`;
+    }
+
+    // Criar o produto com o próximo SKU
     const product = await prisma.product.create({
       data: {
         name,
         description,
         price: parsedPrice,
-        sku,
+        sku: nextSku, // 🔥 Usando o SKU gerado automaticamente
         category,
         imageUrl,
         variants: parsedVariants,
-        createdBy: user.name, // 🔹 Salvando o nome do usuário que cadastrou
+        createdBy: user.name,
       },
     });
+
 
     res.status(201).json(product);
   } catch (error) {

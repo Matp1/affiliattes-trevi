@@ -277,13 +277,7 @@ const handleEditorChange = (content, editor) => {
           onChange={handleChange}
           required
         />
-        <input
-          type="text"
-          name="sku"
-          placeholder="SKU"
-          value={formData.sku}
-          onChange={handleChange}
-        />
+        
         <input
           type="text"
           name="category"
